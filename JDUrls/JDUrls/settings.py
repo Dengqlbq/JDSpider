@@ -39,15 +39,17 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+   'Accept-Language': 'en',
+   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 ('
+                      'KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',
+}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-#    'JDUrls.middlewares.JdurlsSpiderMiddleware': 543,
+#    'JDUrls.middlewares.JDUrlsSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
@@ -65,7 +67,7 @@ ROBOTSTXT_OBEY = True
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    # 'JDUrls.pipelines.JDUrlsPipeline': 300,
+    'JDUrls.pipelines.JDUrlsPipeline': 300,
     'scrapy_redis.pipelines.RedisPipeline': 400
 }
 
@@ -103,7 +105,7 @@ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 REDIS_HOST = 'YOUR_HOST'
 REDIS_PORT = 6379
 REDIS_PARAMS = {}
-REDIS_PARAMS['password'] = 'YOUR_PASS_IF_HAVE'
+REDIS_PARAMS['password'] = 'YOUT_PASS'
 
 # goods detail url
 GOODS_DETAIL_URL = 'https://item.jd.com/{0}.html'
