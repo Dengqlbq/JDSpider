@@ -105,7 +105,7 @@ SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 REDIS_HOST = 'YOUR_HOST'
 REDIS_PORT = 6379
 REDIS_PARAMS = {}
-REDIS_PARAMS['password'] = 'YOUT_PASS'
+REDIS_PARAMS['password'] = 'YOUR_PASS'
 
 # goods detail url
 GOODS_DETAIL_URL = 'https://item.jd.com/{0}.html'

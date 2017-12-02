@@ -1,15 +1,15 @@
 import redis
 from urllib import parse
 
-r = redis.Redis(host='YOUR_HOST', port=6379, password='YOUR_PASS')
+r = redis.Redis(host='', port=6379, password='YOUR_PASS')
 
 # 测试关键词
 keywords = '电脑'
 keywords = parse.quote(keywords)
 
 # 测试页数
-page_count = 1
-current_page = 1
+page_count = 10
+current_page = 90
 start_index = 1
 
 url = 'https://search.jd.com/Search?keyword={0}&enc=utf-8&qrst=1&rt' \
