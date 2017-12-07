@@ -24,18 +24,16 @@ class JDUrlsSpider(RedisSpider):
 
         item = JDUrlsItem()
         item['num_list'] = nums
-        print('page %d have %d', page - 1, len(nums))
         yield item
 
         t = 'https://search.jd.com/s_new.php?keyword={0}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&' \
             'page={1}&s=26&scrolling=y&log_id=1512092382.36606&tpl=1_M&show_items={2}'
-        yield scrapy.Request(t.format(keyword, page, s), callback=self.test2)
+        yield scrapy.Request(t.format(keyword, page, s), callback=self.get_hidden)
 
-    def test2(self, response):
+    def get_hidden(self, response):
         nums = response.xpath('//li[@class="gl-item"][@data-sku]/@data-sku').extract()
+
         item = JDUrlsItem()
         item['num_list'] = nums
-        page = re.findall(r'page=(\d+)', response.url)[0]
-        print('page %d have %d', page, len(nums))
         yield item
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for JDUrls project
+# Scrapy settings for JDDetail project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'JDUrls'
+BOT_NAME = 'JDDetail'
 
-SPIDER_MODULES = ['JDUrls.spiders']
-NEWSPIDER_MODULE = 'JDUrls.spiders'
+SPIDER_MODULES = ['JDDetail.spiders']
+NEWSPIDER_MODULE = 'JDDetail.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'JDUrls (+http://www.yourdomain.com)'
+#USER_AGENT = 'JDDetail (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -39,23 +39,22 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-DEFAULT_REQUEST_HEADERS = {
-   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-   'Accept-Language': 'en',
-   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_3) AppleWebKit/537.36 ('
-                      'KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36',
-}
+#DEFAULT_REQUEST_HEADERS = {
+#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+#   'Accept-Language': 'en',
+#}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-#SPIDER_MIDDLEWARES = {
-#    'JDUrls.middlewares.JDUrlsSpiderMiddleware': 543,
-#}
+SPIDER_MIDDLEWARES = {
+    #'JDDetail.middlewares.JDDetailSpiderMiddleware': 543,
+      'JDDetail.middlewares.ProxyMiddleware' : 500,
+}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'JDUrls.middlewares.MyCustomDownloaderMiddleware': 543,
+#    'JDDetail.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -67,8 +66,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'JDUrls.pipelines.JDUrlsPipeline': 300,
-    'scrapy_redis.pipelines.RedisPipeline': 400
+    'JDDetail.pipelines.JDDetailPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -102,10 +100,16 @@ SCHEDULER_PERSIST = True
 # 默认的 按优先级排序(Scrapy默认)，由sorted set实现的一种非FIFO、LIFO方式。
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
-REDIS_HOST = 'xxxxx'
+# Redis configuration
+REDIS_HOST = 'xxxxxx'
 REDIS_PORT = 6379
 REDIS_PARAMS = {}
 REDIS_PARAMS['password'] = 'xxxxx'
 
-# goods detail url
-GOODS_DETAIL_URL = 'https://item.jd.com/{0}.html'
+# Mysql configuration
+MYSQL_HOST = '127.0.0.1'
+MYSQL_DBNAME = 'Scrapy_test'
+MYSQL_USER = 'root'
+MYSQL_PASSWD = 'xxxxxx'
+MYSQL_CHARSET = 'utf8'
+MYSQL_PORT = 3306

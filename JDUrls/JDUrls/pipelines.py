@@ -18,4 +18,4 @@ class JDUrlsPipeline(object):
 
     def process_item(self, item, spider):
         for n in item['num_list']:
-            self.r.sadd('JDDetailSpider', self.url.format(n))
+            self.r.lpush('JDDetailSpider', self.url.format(n))
