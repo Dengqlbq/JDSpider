@@ -60,7 +60,8 @@ class JDDetailSpiderMiddleware(object):
 class ProxyMiddleware(object):
 
     def process_request(self, request, spider):
-        proxy = requests.get('http://xxxxx/get/')
+        proxy = requests.get('http://HOST:5010/get/').text
+        print('proxy = ' + proxy)
         request.meta['proxy'] = proxy
         return None
 

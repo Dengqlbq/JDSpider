@@ -1,14 +1,14 @@
 import redis
 from urllib import parse
 
-r = redis.Redis(host='xxxx', port=6379, password='xxxxx')
+r = redis.Redis(host='HOST', port=6379, password='PASS')
 
 # 测试关键词
 keywords = '电脑'
 keywords = parse.quote(keywords)
 
 # 测试页数
-page_count = 10
+page_count = 50
 current_page = 1
 start_index = 1
 

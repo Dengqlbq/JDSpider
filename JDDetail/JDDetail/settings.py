@@ -39,16 +39,20 @@ ROBOTSTXT_OBEY = True
 #TELNETCONSOLE_ENABLED = False
 
 # Override the default request headers:
-#DEFAULT_REQUEST_HEADERS = {
-#   'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-#   'Accept-Language': 'en',
-#}
+DEFAULT_REQUEST_HEADERS = {
+   'Accept-Encoding': 'gzip, deflate',
+   'Accept-Language': 'zh-CN,zh;q=0.9,en;q=0.8',
+   'Connection': 'keep-alive',
+   'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+   'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/537.36 (KHTML, like Gecko) ' \
+                 'Chrome/62.0.3202.94 Safari/537.36'
+}
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 SPIDER_MIDDLEWARES = {
     #'JDDetail.middlewares.JDDetailSpiderMiddleware': 543,
-      'JDDetail.middlewares.ProxyMiddleware' : 500,
+     # 'JDDetail.middlewares.ProxyMiddleware' : 500,
 }
 
 # Enable or disable downloader middlewares
@@ -101,15 +105,21 @@ SCHEDULER_PERSIST = True
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
 # Redis configuration
-REDIS_HOST = 'xxxxxx'
+REDIS_HOST = 'HOST'
 REDIS_PORT = 6379
 REDIS_PARAMS = {}
-REDIS_PARAMS['password'] = 'xxxxx'
+REDIS_PARAMS['password'] = 'PASS'
 
 # Mysql configuration
 MYSQL_HOST = '127.0.0.1'
 MYSQL_DBNAME = 'Scrapy_test'
 MYSQL_USER = 'root'
-MYSQL_PASSWD = 'xxxxxx'
+MYSQL_PASSWD = 'PASS'
 MYSQL_CHARSET = 'utf8'
 MYSQL_PORT = 3306
+
+# Comment-relate url
+COMMENT_URL = 'https://club.jd.com/comment/productCommentSummaries.action?referenceIds={0}'
+
+# Price-relate url
+PRICE_URL = 'https://p.3.cn/prices/mgets?skuIds=J_{0}'
