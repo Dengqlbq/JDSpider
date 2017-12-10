@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Scrapy settings for JDDetail project
+# Scrapy settings for JDComment project
 #
 # For simplicity, this file contains only settings considered important or
 # commonly used. You can find more settings consulting the documentation:
@@ -9,14 +9,14 @@
 #     http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #     http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 
-BOT_NAME = 'JDDetail'
+BOT_NAME = 'JDComment'
 
-SPIDER_MODULES = ['JDDetail.spiders']
-NEWSPIDER_MODULE = 'JDDetail.spiders'
+SPIDER_MODULES = ['JDComment.spiders']
+NEWSPIDER_MODULE = 'JDComment.spiders'
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-#USER_AGENT = 'JDDetail (+http://www.yourdomain.com)'
+#USER_AGENT = 'JDComment (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
@@ -51,14 +51,13 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
 #SPIDER_MIDDLEWARES = {
-    #'JDDetail.middlewares.JDDetailSpiderMiddleware': 543,
+#    'JDComment.middlewares.JdcommentSpiderMiddleware': 543,
 #}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-    #'JDDetail.middlewares.MyCustomDownloaderMiddleware': 543,
-    #'JDDetail.middlewares.ProxyMiddleware': 543,
+#    'JDComment.middlewares.MyCustomDownloaderMiddleware': 543,
 #}
 
 # Enable or disable extensions
@@ -70,7 +69,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'JDDetail.pipelines.JDDetailPipeline': 300,
+    'JDComment.pipelines.JDCommentPipeline': 300,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -118,8 +117,6 @@ MYSQL_PASSWD = 'PASS'
 MYSQL_CHARSET = 'utf8'
 MYSQL_PORT = 3306
 
-# Comment excerpt url
-COMMENT_EXCERPT_URL = 'https://club.jd.com/comment/productCommentSummaries.action?referenceIds={0}'
-
-# Price-relate url
-PRICE_URL = 'https://p.3.cn/prices/mgets?skuIds=J_{0}'
+# Comment-relate url
+COMMENT_URL = 'https://sclub.jd.com/comment/productPageComments.action?' \
+              'productId={0}&score=0&sortType=5&page={1}&pageSize=10'

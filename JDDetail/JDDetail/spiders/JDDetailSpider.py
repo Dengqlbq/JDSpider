@@ -7,13 +7,13 @@ import json
 
 
 class JDDetailSpider(RedisSpider):
-
+    # 获取指定商品的商品详情
     name = 'JDDetailSpider'
     allow_domains = ['www.jd.com']
     redis_key = 'JDDetailSpider'
 
     settings = get_project_settings()
-    comment_url = settings['COMMENT_URL']
+    comment_url = settings['COMMENT_EXCERPT_URL']
     price_url = settings['PRICE_URL']
 
     def parse(self, response):
@@ -62,6 +62,7 @@ class JDDetailSpider(RedisSpider):
         item['jd_sel'] = jd_sel
         item['num'] = num
 
+        # 请求价格json数据
         price_request = scrapy.Request(self.price_url.format(num), callback=self.get_price)
         price_request.meta['item'] = item
         yield price_request
@@ -73,6 +74,7 @@ class JDDetailSpider(RedisSpider):
         item['price'] = price_json[0]['p']
         num = item['num']
 
+        # 请求评论摘要json数据
         comment_request = scrapy.Request(self.comment_url.format(num), callback=self.get_comment)
         comment_request.meta['item'] = item
         yield comment_request

@@ -6,10 +6,9 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-import requests as req
 
 
-class JDDetailSpiderMiddleware(object):
+class JdcommentSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -55,14 +54,3 @@ class JDDetailSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
-
-
-class ProxyMiddleware(object):
-
-    def process_requests(self, requests, spider):
-        # 切换代理
-        # 当前中间件未启用，因为还没写。。
-        proxy = req.get('http://HOST:PORT/get/').text
-        requests.meta['proxy'] = 'http://' + proxy
-        return None
-

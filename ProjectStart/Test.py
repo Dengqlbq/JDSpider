@@ -1,14 +1,14 @@
 import redis
 from urllib import parse
 
+# Redis configuration
 r = redis.Redis(host='HOST', port=6379, password='PASS')
 
-# 测试关键词
+# 改写keywords和page_count，目前page_count最大值只能为100，待解决
 keywords = '手机'
-keywords = parse.quote(keywords)
+page_count = 10
 
-# 测试页数
-page_count = 50
+keywords = parse.quote(keywords)
 current_page = 1
 start_index = 1
 

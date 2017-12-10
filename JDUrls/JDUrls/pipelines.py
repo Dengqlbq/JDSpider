@@ -12,10 +12,14 @@ class JDUrlsPipeline(object):
 
     def __init__(self):
         self.settings = get_project_settings()
-        self.url = self.settings['GOODS_DETAIL_URL']
+        self.detail_url = self.settings['GOODS_DETAIL_URL']
+        self.comment_url = self.settings['COMMENT_URL']
+
         self.r = redis.Redis(host=self.settings['REDIS_HOST'], port=self.settings['REDIS_PORT'],
                              password=self.settings['REDIS_PARAMS']['password'])
 
     def process_item(self, item, spider):
+        # 将商品编号整合成detail-relate url 和comment-relate url后存到服务器redis数据库
         for n in item['num_list']:
-            self.r.lpush('JDDetailSpider', self.url.format(n))
+            self.r.lpush('JDDetailSpider', self.detail_url.format(n))
+            self.r.lpush('JDCommentSpider', self.comment_url.format(n))

@@ -102,10 +102,15 @@ SCHEDULER_PERSIST = True
 # 默认的 按优先级排序(Scrapy默认)，由sorted set实现的一种非FIFO、LIFO方式。
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
+# Redis configuration
 REDIS_HOST = 'HOST'
 REDIS_PORT = 6379
 REDIS_PARAMS = {}
 REDIS_PARAMS['password'] = 'PASS'
 
-# goods detail url
+# Goods detail url
 GOODS_DETAIL_URL = 'https://item.jd.com/{0}.html'
+
+# Comment-relate url
+COMMENT_URL = 'https://sclub.jd.com/comment/productPageComments.action?' \
+              'productId={0}&score=0&sortType=5&page=1&pageSize=10'
