@@ -1,8 +1,10 @@
 import requests
 import re
 
-html = requests.get('https://item.jd.com/5025518.html')
-with open('a.html', 'wb') as f:
-    f.write(html.content)
+s = 'hghiehhi'
+a = s.split('>')
+b = a[len(a) - 1]
+print(b)
+print(type(b))
 
 

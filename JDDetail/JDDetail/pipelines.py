@@ -26,11 +26,12 @@ class JDDetailPipeline(object):
     def process_item(self, item, spider):
 
             sql = 'insert into Scrapy_test.JDDetail(name,price,owner,flag,comment_count,good_count,default_good_count,' \
-                  'general_count,poor_count,after_count,good_rate,general_rate,poor_rate,average_score,num)'\
-                  'values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                  'general_count,poor_count,after_count,good_rate,general_rate,poor_rate,average_score,num,jd_sel,global_buy)'\
+                  'values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+
             self.cursor.execute(sql, (item['name'], item['price'], item['owner'], item['flag'], item['comment_count'],
                                       item['good_count'], item['default_good_count'], item['general_count'],
                                       item['poor_count'], item['after_count'], item['good_rate'], item['general_rate'],
-                                      item['poor_rate'], item['average_score'], item['num']))
+                                      item['poor_rate'], item['average_score'], item['num'], item['jd_sel'], item['global_buy']))
             self.connect.commit()
 

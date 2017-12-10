@@ -19,14 +19,31 @@ class JDDetailSpider(RedisSpider):
     def parse(self, response):
         item = JDDetailItem()
 
-        raw_name = re.findall(r'<div class="sku-name">(.*?)</div>', response.text, re.S)[0].strip()
-        if re.match(r'<img', raw_name) is None:
-            name = raw_name
+        # 全球购
+        if 'hk' in response.url:
+            global_buy = True
         else:
-            name = raw_name.split('>')[1].strip()
+            global_buy = False
 
-        owner_list = response.xpath('//div[@class="J-hove-wrap EDropdown fr"]/div[@class="item"]/div[@class="name"]'
-                                    '/a/text()').extract()
+        # 商品名
+        raw_name = re.findall(r'<div class="sku-name">(.*?)</div>', response.text, re.S)[0].strip()
+        if '京东精选' in raw_name:
+            jd_sel = True
+        else:
+            jd_sel = False
+
+        # 确保商品名无多余字符，如可能出现的 "京东精选"
+        name_list = raw_name.split('>')
+        name = name_list[len(name_list) - 1].strip()
+
+        # 全球购商铺名提取方法不同
+        if not global_buy:
+            owner_list = response.xpath('//div[@class="J-hove-wrap EDropdown fr"]/div[@class="item"]/div[@class="name"]'
+                                        '/a/text()').extract()
+        else:
+            owner_list = response.xpath('//div[@class="shopName"]/strong/span/a/text()').extract()
+
+        # 是否自营
         if len(owner_list) == 0:
             owner = '自营'
             flag = True
@@ -41,6 +58,8 @@ class JDDetailSpider(RedisSpider):
         item['name'] = name
         item['owner'] = owner
         item['flag'] = flag
+        item['global_buy'] = global_buy
+        item['jd_sel'] = jd_sel
         item['num'] = num
 
         price_request = scrapy.Request(self.price_url.format(num), callback=self.get_price)

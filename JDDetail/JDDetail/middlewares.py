@@ -6,7 +6,7 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
-import requests
+import requests as req
 
 
 class JDDetailSpiderMiddleware(object):
@@ -59,9 +59,9 @@ class JDDetailSpiderMiddleware(object):
 
 class ProxyMiddleware(object):
 
-    def process_request(self, request, spider):
-        proxy = requests.get('http://HOST:5010/get/').text
-        print('proxy = ' + proxy)
-        request.meta['proxy'] = proxy
+    def process_requests(self, requests, spider):
+        proxy = req.get('http://HOST:5010/get/').text
+        # print('proxy = ' + proxy)
+        requests.meta['proxy'] = 'http://' + proxy
         return None
 

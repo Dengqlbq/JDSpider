@@ -13,6 +13,8 @@ class JDDetailItem(scrapy.Item):
     name = scrapy.Field()
     price = scrapy.Field()
     owner = scrapy.Field()
+    jd_sel = scrapy.Field()
+    global_buy = scrapy.Field()
     flag = scrapy.Field()
     comment_count = scrapy.Field()
     good_count = scrapy.Field()

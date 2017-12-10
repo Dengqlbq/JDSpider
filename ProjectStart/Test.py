@@ -4,7 +4,7 @@ from urllib import parse
 r = redis.Redis(host='HOST', port=6379, password='PASS')
 
 # 测试关键词
-keywords = '电脑'
+keywords = '手机'
 keywords = parse.quote(keywords)
 
 # 测试页数

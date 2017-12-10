@@ -50,15 +50,15 @@ DEFAULT_REQUEST_HEADERS = {
 
 # Enable or disable spider middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/spider-middleware.html
-SPIDER_MIDDLEWARES = {
+#SPIDER_MIDDLEWARES = {
     #'JDDetail.middlewares.JDDetailSpiderMiddleware': 543,
-     # 'JDDetail.middlewares.ProxyMiddleware' : 500,
-}
+#}
 
 # Enable or disable downloader middlewares
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
-#    'JDDetail.middlewares.MyCustomDownloaderMiddleware': 543,
+    #'JDDetail.middlewares.MyCustomDownloaderMiddleware': 543,
+    #'JDDetail.middlewares.ProxyMiddleware': 543,
 #}
 
 # Enable or disable extensions
