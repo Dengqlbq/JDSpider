@@ -1,6 +1,6 @@
 # JDSpider
 
-### 目标：分布式爬取京东商品详情和评论
+### 目标：分布式爬取京东商品详情，评论和评论总结
 
 ### Power by:
 1. Python 3.6
@@ -11,16 +11,6 @@
 
 #### Project blog:  writing...
 ---
-### 进度：目前已可使用
-~~1 服务器部署redis数据库  （done)~~<br>
-~~2 服务器部署IP池   （done)~~<br>
-~~3 获取指定关键词指定页数(max=100)所有商品url  （done）~~<br>
-~~4 爬虫间通信  （done）~~<br>
-~~5 爬取商品详情及评论总结  （done)~~<br>
-~~6 爬取商品指定页数(max=100)评论  （done)~~<br>
-7 获取指定关键词下所有商品url  (ing)
-
----
 ### How to use ？
 ```
 git clone https://github.com/Dengqlbq/JDSpider.git
@@ -29,8 +19,8 @@ git clone https://github.com/Dengqlbq/JDSpider.git
 Override the following content
 1. ProjectStart/Test.py  (redis configuration, keywords, page_count)
 2. JDUrlsSpider/settings.py  (redis configuration)
-3. JDDetailSpider/settings.py  (redis configuration, mysql configuration)
-4. JDCommentSpider/settings.py  (redis configuratin, mysql configuration)
+3. JDDetailSpider/settings.py  (redis configuration, mysql configuration， DOWNLOAD_DELAY)
+4. JDCommentSpider/settings.py  (redis configuratin, mysql configuration， DOWNLOAD_DELAY)
 
 ```
 cd ProjectStart
@@ -60,5 +50,9 @@ Note: Before you run the project, make sure that you have created tables match t
 
 ---
 ### Achievement
-![1](https://github.com/Dengqlbq/JDSpider/blob/master/Image/detail.png)
-![2](https://github.com/Dengqlbq/JDSpider/blob/master/Image/comment.png)
+Product detail and comment summary
+![商品详情和评论总结](https://github.com/Dengqlbq/JDSpider/blob/master/Image/detail.png)
+Some comments
+![部分评论数据](https://github.com/Dengqlbq/JDSpider/blob/master/Image/paitial.png)
+Full comment 
+![评论都是完整评论](https://github.com/Dengqlbq/JDSpider/blob/master/Image/comment.png)

@@ -18,7 +18,6 @@ class JDCommentSpider(RedisSpider):
     def parse(self, response):
         comment_json = json.loads(response.text)
         good_number = re.findall(r'productId=(\d+)', response.url)[0]
-        # 目前maxPage最大值都是100，待解决
         max_page_num = comment_json['maxPage']
 
         for com in comment_json['comments']:

@@ -4,9 +4,9 @@ from urllib import parse
 # Redis configuration
 r = redis.Redis(host='HOST', port=6379, password='PASS')
 
-# 改写keywords和page_count，目前page_count最大值只能为100，待解决
+# 改写keywords和page_count
 keywords = '手机'
-page_count = 10
+page_count = 100
 
 keywords = parse.quote(keywords)
 current_page = 1
