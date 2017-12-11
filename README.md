@@ -53,7 +53,7 @@ Note: Before you run the project, make sure that you have created tables match t
 Product detail and comment summary
 ![商品详情和评论总结](https://github.com/Dengqlbq/JDSpider/blob/master/Image/detail.png)
 <br>
-Some comments
+Some comments<br>
 ![部分评论数据](https://github.com/Dengqlbq/JDSpider/blob/master/Image/partial.png)
 <br>
 Full comment 
