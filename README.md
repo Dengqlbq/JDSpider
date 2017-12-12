@@ -45,9 +45,10 @@ scrapy crawl JDCommentSpider
 ```
 
 
-Note: Before you run the project, make sure that you have created tables match the requirement.
-      If you did not build a [proxy_pool](https://github.com/jhao104/proxy_pool), disable the
-      "ProxyMiddleware" in JDCommetSpider/settings.py
+Note: 
+1. Before you run the project, make sure that you have created tables match the requirement.<br>
+2. If you did not build a [proxy_pool](https://github.com/jhao104/proxy_pool), disable the
+   "ProxyMiddleware" in JDCommetSpider/settings.py
 
 
 ---
