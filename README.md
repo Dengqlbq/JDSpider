@@ -9,7 +9,7 @@
 4. json
 5. redis
 
-#### Project blog:  writing...
+#### Project blog:  http://blog.csdn.net/sinat_34200786/article/details/78770356
 ---
 ### How to use ？
 ```
