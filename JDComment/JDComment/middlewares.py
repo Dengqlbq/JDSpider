@@ -6,9 +6,10 @@
 # http://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import requests as req
 
 
-class JdcommentSpiderMiddleware(object):
+class JDCommentSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
     # scrapy acts as if the spider middleware does not modify the
     # passed objects.
@@ -54,3 +55,23 @@ class JdcommentSpiderMiddleware(object):
 
     def spider_opened(self, spider):
         spider.logger.info('Spider opened: %s' % spider.name)
+
+
+class ProxyMiddleware(object):
+
+    def get_useful_proxy(self):
+        while True:
+            proxy = req.get('http://HOST:PORT/get').text
+            useful = False
+            try:
+                req.get('http://httpbin.org/get', proxies={"http": "http://{}".format(proxy)}, timeout=1)
+                useful = True
+            except req.exceptions.ConnectTimeout:
+                req.get("http://HOST:PORT/delete/?proxy={}".format(proxy))
+            if useful:
+                return proxy
+
+    def process_requests(self, requests, spider):
+        proxy = self.get_useful_proxy()
+        requests.meta['proxy'] = 'http://' + proxy
+        return None

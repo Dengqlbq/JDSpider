@@ -1,5 +1,6 @@
 from scrapy_redis.spiders import RedisSpider
 from JDUrls.items import JDUrlsItem
+from scrapy.utils.project import get_project_settings
 import scrapy
 import re
 
@@ -9,6 +10,9 @@ class JDUrlsSpider(RedisSpider):
     name = 'JDUrlsSpider'
     allow_domains = ['www.jd.com']
     redis_key = 'JDUrlsSpider'
+
+    settings = get_project_settings()
+    hide_url = settings['HIDE_URL']
 
     def parse(self, response):
         # 页面中未隐藏的所有商品编号
@@ -28,9 +32,7 @@ class JDUrlsSpider(RedisSpider):
         item['num_list'] = nums
         yield item
 
-        hide_num_page = 'https://search.jd.com/s_new.php?keyword={0}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&' \
-                        'page={1}&s=26&scrolling=y&log_id=1512092382.36606&tpl=1_M&show_items={2}'
-        yield scrapy.Request(hide_num_page.format(keyword, page, s), callback=self.get_hidden)
+        yield scrapy.Request(self.hide_url.format(keyword, page, s), callback=self.get_hidden)
 
     def get_hidden(self, response):
         # 页面中隐藏的所有商品编号

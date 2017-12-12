@@ -57,12 +57,3 @@ class JDDetailSpiderMiddleware(object):
         spider.logger.info('Spider opened: %s' % spider.name)
 
 
-class ProxyMiddleware(object):
-
-    def process_requests(self, requests, spider):
-        # 切换代理
-        # 当前中间件未启用，因为还没写。。
-        proxy = req.get('http://HOST:PORT/get/').text
-        requests.meta['proxy'] = 'http://' + proxy
-        return None
-

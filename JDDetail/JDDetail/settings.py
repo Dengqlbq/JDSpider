@@ -58,7 +58,6 @@ DEFAULT_REQUEST_HEADERS = {
 # See http://scrapy.readthedocs.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
     #'JDDetail.middlewares.MyCustomDownloaderMiddleware': 543,
-    #'JDDetail.middlewares.ProxyMiddleware': 543,
 #}
 
 # Enable or disable extensions

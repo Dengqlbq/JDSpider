@@ -5,7 +5,7 @@ from urllib import parse
 r = redis.Redis(host='HOST', port=6379, password='PASS')
 
 # 改写keywords和page_count
-keywords = '手机'
+keywords = '电脑'
 page_count = 100
 
 keywords = parse.quote(keywords)

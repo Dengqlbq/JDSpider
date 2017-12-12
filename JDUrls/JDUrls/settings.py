@@ -108,6 +108,10 @@ REDIS_PORT = 6379
 REDIS_PARAMS = {}
 REDIS_PARAMS['password'] = 'PASS'
 
+# Hide page url
+HIDE_URL = 'https://search.jd.com/s_new.php?keyword={0}&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&' \
+            'page={1}&s=26&scrolling=y&log_id=1512092382.36606&tpl=1_M&show_items={2}'
+
 # Goods detail url
 GOODS_DETAIL_URL = 'https://item.jd.com/{0}.html'
 

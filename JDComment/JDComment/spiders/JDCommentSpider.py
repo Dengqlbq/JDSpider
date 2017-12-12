@@ -16,7 +16,11 @@ class JDCommentSpider(RedisSpider):
     comment_url = settings['COMMENT_URL']
 
     def parse(self, response):
-        comment_json = json.loads(response.text)
+        try:
+            comment_json = json.loads(response.text)
+        except json.decoder.JSONDecodeError:
+            return
+
         good_number = re.findall(r'productId=(\d+)', response.url)[0]
         max_page_num = comment_json['maxPage']
 
@@ -30,7 +34,11 @@ class JDCommentSpider(RedisSpider):
             yield scrapy.Request(self.comment_url.format(good_number, i), callback=self.get_leftover)
 
     def get_leftover(self, response):
-        comment_json = json.loads(response.text)
+        try:
+            comment_json = json.loads(response.text)
+        except json.decoder.JSONDecodeError:
+            return
+
         good_number = re.findall(r'productId=(\d+)', response.url)[0]
 
         for com in comment_json['comments']:

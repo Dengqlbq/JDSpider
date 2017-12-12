@@ -74,7 +74,7 @@ class JDDetailSpider(RedisSpider):
         item['price'] = price_json[0]['p']
         num = item['num']
 
-        # 请求评论摘要json数据
+        # 请求评论总结json数据
         comment_request = scrapy.Request(self.comment_url.format(num), callback=self.get_comment)
         comment_request.meta['item'] = item
         yield comment_request
