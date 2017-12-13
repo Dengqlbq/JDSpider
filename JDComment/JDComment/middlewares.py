@@ -59,19 +59,7 @@ class JDCommentSpiderMiddleware(object):
 
 class ProxyMiddleware(object):
 
-    def get_useful_proxy(self):
-        while True:
-            proxy = req.get('http://HOST:PORT/get').text
-            useful = False
-            try:
-                req.get('http://httpbin.org/get', proxies={"http": "http://{}".format(proxy)}, timeout=1)
-                useful = True
-            except req.exceptions.ConnectTimeout:
-                req.get("http://HOST:PORT/delete/?proxy={}".format(proxy))
-            if useful:
-                return proxy
-
-    def process_requests(self, requests, spider):
-        proxy = self.get_useful_proxy()
-        requests.meta['proxy'] = 'http://' + proxy
+    def process_request(self, request, spider):
+        proxy = req.get('http:HOST:PORT/get')
+        request.meta['proxy'] = 'http://' + proxy
         return None
