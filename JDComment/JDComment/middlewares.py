@@ -59,7 +59,9 @@ class JDCommentSpiderMiddleware(object):
 
 class ProxyMiddleware(object):
 
-    def process_request(self, request, spider):
-        proxy = req.get('http:HOST:PORT/get')
+
+    def process_exception(self, request, exception, spider):
+        proxy = req.get('http://HOST:PORT/get', timeout=1).text
+        print("\033[31merror!! get the proxy : %s \033[0m" % proxy)
         request.meta['proxy'] = 'http://' + proxy
-        return None
+        return request
