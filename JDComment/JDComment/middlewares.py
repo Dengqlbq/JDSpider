@@ -58,10 +58,14 @@ class JDCommentSpiderMiddleware(object):
 
 
 class ProxyMiddleware(object):
-
-
+    # 使用代理总是慢很多，所以在被封ip时才使用代理
     def process_exception(self, request, exception, spider):
-        proxy = req.get('http://HOST:PORT/get', timeout=1).text
-        print("\033[31merror!! get the proxy : %s \033[0m" % proxy)
-        request.meta['proxy'] = 'http://' + proxy
+        try:
+            proxy = req.get('http://HOST:PORT/get', timeout=1).text
+            print("\033[31mget the proxy : %s \033[0m" % proxy)
+            request.meta['proxy'] = 'http://' + proxy
+        except:
+            pass
         return request
+
+
