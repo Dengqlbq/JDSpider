@@ -5,8 +5,9 @@
 ### Feature
 1. 总体框架划分四部分（一总控，三爬虫）灵活分配
 2. 爬虫皆为分布式部署，解决带宽和性能瓶颈
-3. proxy_pool防止ip封禁
-4. mysql底层数据存储
+3. proxy_pool解决ip封禁
+4. 禁用cookie防止浏览器记忆爬虫
+5. mysql底层数据存储
 
 ### Power by:
 1. Python 3.6
